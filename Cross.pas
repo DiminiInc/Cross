@@ -32,8 +32,9 @@ type
     procedure Custom1Click(Sender: TObject);
     procedure Square1Click(Sender: TObject);
     procedure About1Click(Sender: TObject);
+    procedure FormKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
   private
-    size: integer;
+    size, lineWidth: integer;
     appMode, resizingMode: string;
   public
     { Public declarations }
@@ -98,6 +99,7 @@ begin
   App.Canvas.Rectangle(0, 0, App.ClientWidth, App.ClientHeight);
 
   App.Canvas.Pen.Color := clRed;
+  App.Canvas.Pen.Width := lineWidth;
 
   App.Canvas.MoveTo(round(centerX - size / 2), 0);
   App.Canvas.LineTo(round(centerX - size / 2), App.Height);
@@ -110,6 +112,7 @@ begin
   App.Canvas.LineTo(App.Width, round(centerY + size / 2));
 
   App.Canvas.Pen.Color := clBlack;
+  App.Canvas.Pen.Width := 1;
 end;
 
 procedure TApp.DrawCircle();
@@ -124,6 +127,7 @@ begin
   App.Canvas.Rectangle(0, 0, App.ClientWidth, App.ClientHeight);
 
   App.Canvas.Pen.Color := clRed;
+  App.Canvas.Pen.Width := lineWidth;
 
   App.Canvas.Ellipse(round(centerX - size / 2), round(centerY - size / 2),
     round(centerX + size / 2), round(centerY + size / 2));
@@ -134,12 +138,30 @@ begin
   App.Canvas.LineTo(App.Width, round(centerY));
 
   App.Canvas.Pen.Color := clBlack;
+  App.Canvas.Pen.Width := 1;
 end;
 
 procedure TApp.FormCreate(Sender: TObject);
 begin
   appMode := 'Rectangle';
   size := 10;
+  lineWidth := 1;
+end;
+
+procedure TApp.FormKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
+  if Key = 38 then
+  begin
+    lineWidth := lineWidth + 1;
+  end;
+  if Key = 40 then
+  begin
+    lineWidth := lineWidth - 1;
+  end;
+  if appMode = 'Rectangle' then
+    DrawRectangle()
+  else
+    DrawCircle();
 end;
 
 procedure TApp.FormMouseWheelDown(Sender: TObject; Shift: TShiftState;

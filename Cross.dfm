@@ -16,6 +16,7 @@ object App: TApp
   Menu = AppMenu
   OldCreateOrder = False
   OnCreate = FormCreate
+  OnKeyUp = FormKeyUp
   OnMouseWheelDown = FormMouseWheelDown
   OnMouseWheelUp = FormMouseWheelUp
   OnPaint = FormPaint
