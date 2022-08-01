@@ -39,7 +39,8 @@ begin
   App.Canvas.Refresh;
   App.Canvas.Brush.Color:=clFuchsia;
   App.Canvas.Rectangle(0, 0, App.ClientWidth, App.ClientHeight);
-  App.Canvas.Brush.Color:=clBlack;
+
+  App.Canvas.Pen.Color:=clRed;
 
   App.Canvas.MoveTo(round(centerX - size / 2), 0);
   App.Canvas.LineTo(round(centerX - size / 2), App.Height);
@@ -50,6 +51,8 @@ begin
   App.Canvas.LineTo(App.Width, round(centerY - size / 2));
   App.Canvas.MoveTo(0, round(centerY + size / 2));
   App.Canvas.LineTo(App.Width, round(centerY + size / 2));
+
+  App.Canvas.Pen.Color:=clBlack;
 end;
 
 procedure TApp.FormCreate(Sender: TObject);
