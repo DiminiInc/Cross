@@ -31,6 +31,7 @@ type
     procedure Rectangle1Click(Sender: TObject);
     procedure Custom1Click(Sender: TObject);
     procedure Square1Click(Sender: TObject);
+    procedure About1Click(Sender: TObject);
   private
     size: integer;
     appMode, resizingMode: string;
@@ -45,12 +46,19 @@ implementation
 
 {$R *.dfm}
 
+uses About;
+
 procedure TApp.Rectangle1Click(Sender: TObject);
 begin
   Rectangle1.Checked := True;
   Circle1.Checked := False;
   appMode := 'Rectangle';
   DrawRectangle();
+end;
+
+procedure TApp.About1Click(Sender: TObject);
+begin
+  AboutForm.Show();
 end;
 
 procedure TApp.Circle1Click(Sender: TObject);
