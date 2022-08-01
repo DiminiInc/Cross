@@ -150,6 +150,7 @@ end;
 
 procedure TApp.FormKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
 begin
+  App.DoubleBuffered := True;
   if Key = 38 then
   begin
     lineWidth := lineWidth + 1;
@@ -167,6 +168,7 @@ end;
 procedure TApp.FormMouseWheelDown(Sender: TObject; Shift: TShiftState;
   MousePos: TPoint; var Handled: Boolean);
 begin
+  App.DoubleBuffered := True;
   size := size - 1;
   if appMode = 'Rectangle' then
     DrawRectangle()
@@ -177,6 +179,7 @@ end;
 procedure TApp.FormMouseWheelUp(Sender: TObject; Shift: TShiftState;
   MousePos: TPoint; var Handled: Boolean);
 begin
+  App.DoubleBuffered := True;
   size := size + 1;
   if appMode = 'Rectangle' then
     DrawRectangle()
@@ -195,8 +198,13 @@ end;
 procedure TApp.FormResize(Sender: TObject);
 begin
   if resizingMode = 'Square' then
-    App.ClientWidth := App.ClientHeight;
-
+  begin
+    App.DoubleBuffered := False;
+    if (App.ClientWidth <> App.ClientHeight) then
+      App.ClientHeight := App.ClientWidth
+    else
+      App.DoubleBuffered := True;
+  end;
   if appMode = 'Rectangle' then
     DrawRectangle()
   else
