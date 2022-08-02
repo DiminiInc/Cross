@@ -20,6 +20,7 @@ type
     Custom1: TMenuItem;
     procedure DrawRectangle;
     procedure DrawCircle;
+    procedure DrawGrid;
     procedure FormPaint(Sender: TObject);
     procedure FormResize(Sender: TObject);
     procedure FormMouseWheelDown(Sender: TObject; Shift: TShiftState;
@@ -141,6 +142,14 @@ begin
   App.Canvas.Pen.Width := 1;
 end;
 
+procedure TApp.DrawGrid();
+begin
+  if appMode = 'Rectangle' then
+    DrawRectangle()
+  else
+    DrawCircle();
+end;
+
 procedure TApp.FormCreate(Sender: TObject);
 begin
   appMode := 'Rectangle';
@@ -159,10 +168,8 @@ begin
   begin
     lineWidth := lineWidth - 1;
   end;
-  if appMode = 'Rectangle' then
-    DrawRectangle()
-  else
-    DrawCircle();
+
+  DrawGrid();
 end;
 
 procedure TApp.FormMouseWheelDown(Sender: TObject; Shift: TShiftState;
@@ -175,10 +182,8 @@ begin
     size := size - 10
   else
     size := size - 1;
-  if appMode = 'Rectangle' then
-    DrawRectangle()
-  else
-    DrawCircle();
+
+  DrawGrid();
 end;
 
 procedure TApp.FormMouseWheelUp(Sender: TObject; Shift: TShiftState;
@@ -191,18 +196,13 @@ begin
     size := size + 10
   else
     size := size + 1;
-  if appMode = 'Rectangle' then
-    DrawRectangle()
-  else
-    DrawCircle();
+
+  DrawGrid();
 end;
 
 procedure TApp.FormPaint(Sender: TObject);
 begin
-  if appMode = 'Rectangle' then
-    DrawRectangle()
-  else
-    DrawCircle();
+  DrawGrid();
 end;
 
 procedure TApp.FormResize(Sender: TObject);
@@ -215,10 +215,8 @@ begin
     else
       App.DoubleBuffered := True;
   end;
-  if appMode = 'Rectangle' then
-    DrawRectangle()
-  else
-    DrawCircle();
+
+  DrawGrid();
 end;
 
 end.
