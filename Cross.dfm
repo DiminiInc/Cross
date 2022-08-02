@@ -13,6 +13,7 @@ object App: TApp
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
+  FormStyle = fsStayOnTop
   Menu = AppMenu
   OldCreateOrder = False
   OnCreate = FormCreate
