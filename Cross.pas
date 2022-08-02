@@ -160,11 +160,11 @@ end;
 procedure TApp.FormKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
 begin
   App.DoubleBuffered := True;
-  if Key = 38 then
+  if Key = 187 then
   begin
     lineWidth := lineWidth + 1;
   end;
-  if Key = 40 then
+  if Key = 189 then
   begin
     lineWidth := lineWidth - 1;
   end;
