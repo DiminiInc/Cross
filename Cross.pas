@@ -169,7 +169,12 @@ procedure TApp.FormMouseWheelDown(Sender: TObject; Shift: TShiftState;
   MousePos: TPoint; var Handled: Boolean);
 begin
   App.DoubleBuffered := True;
-  size := size - 1;
+  if ssShift in Shift then
+    size := size - 100
+  else if ssCtrl in Shift then
+    size := size - 10
+  else
+    size := size - 1;
   if appMode = 'Rectangle' then
     DrawRectangle()
   else
@@ -180,7 +185,12 @@ procedure TApp.FormMouseWheelUp(Sender: TObject; Shift: TShiftState;
   MousePos: TPoint; var Handled: Boolean);
 begin
   App.DoubleBuffered := True;
-  size := size + 1;
+  if ssShift in Shift then
+    size := size + 100
+  else if ssCtrl in Shift then
+    size := size + 10
+  else
+    size := size + 1;
   if appMode = 'Rectangle' then
     DrawRectangle()
   else
