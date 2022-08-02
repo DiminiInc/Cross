@@ -167,6 +167,8 @@ begin
   if Key = 189 then
   begin
     lineWidth := lineWidth - 1;
+    if lineWidth < 1 then
+      lineWidth := 1
   end;
 
   DrawGrid();
@@ -182,7 +184,8 @@ begin
     size := size - 10
   else
     size := size - 1;
-
+  if size < 0 then
+    size := 0;
   DrawGrid();
 end;
 
