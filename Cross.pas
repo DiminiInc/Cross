@@ -158,6 +158,8 @@ begin
 end;
 
 procedure TApp.FormKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+var
+  speedModifier: integer;
 begin
   App.DoubleBuffered := True;
   if Key = 187 then
@@ -169,6 +171,30 @@ begin
     lineWidth := lineWidth - 1;
     if lineWidth < 1 then
       lineWidth := 1
+  end;
+
+  if ssShift in Shift then
+    speedModifier := 100
+  else if ssCtrl in Shift then
+    speedModifier := 10
+  else
+    speedModifier := 1;
+
+  if Key = 40 then
+  begin
+    App.Top := App.Top + speedModifier;
+  end;
+  if Key = 38 then
+  begin
+    App.Top := App.Top - speedModifier;
+  end;
+  if Key = 39 then
+  begin
+    App.Left := App.Left + speedModifier;
+  end;
+  if Key = 37 then
+  begin
+    App.Left := App.Left - speedModifier;
   end;
 
   DrawGrid();
