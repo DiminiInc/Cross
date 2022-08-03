@@ -33,7 +33,7 @@ type
     procedure Custom1Click(Sender: TObject);
     procedure Square1Click(Sender: TObject);
     procedure About1Click(Sender: TObject);
-    procedure FormKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
   private
     size, sizeAdditional, lineWidth: integer;
     appMode, editMode, resizingMode: string;
@@ -164,7 +164,7 @@ begin
   lineWidth := 1;
 end;
 
-procedure TApp.FormKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+procedure TApp.FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
 var
   speedModifier: integer;
 begin
