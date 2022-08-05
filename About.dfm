@@ -128,9 +128,9 @@ object AboutForm: TAboutForm
   object Version: TStaticText
     Left = 155
     Top = 59
-    Width = 132
+    Width = 115
     Height = 29
-    Caption = 'Version: 0.3.1'
+    Caption = 'Version: 0.4'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -21

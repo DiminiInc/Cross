@@ -127,9 +127,8 @@
         <VerInfo_Locale>1033</VerInfo_Locale>
         <Icon_MainIcon>Cross.ico</Icon_MainIcon>
         <VerInfo_MajorVer>0</VerInfo_MajorVer>
-        <VerInfo_MinorVer>3</VerInfo_MinorVer>
-        <VerInfo_Keys>CompanyName=Dimini Inc.;FileDescription=$(MSBuildProjectName);FileVersion=0.3.1.0;InternalName=Cross;LegalCopyright=© Dimini Inc., 2022;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=0.3.1;Comments=</VerInfo_Keys>
-        <VerInfo_Release>1</VerInfo_Release>
+        <VerInfo_MinorVer>4</VerInfo_MinorVer>
+        <VerInfo_Keys>CompanyName=Dimini Inc.;FileDescription=$(MSBuildProjectName);FileVersion=0.4.0.0;InternalName=Cross;LegalCopyright=© Dimini Inc., 2022;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=0.4;Comments=</VerInfo_Keys>
     </PropertyGroup>
     <ItemGroup>
         <DelphiCompile Include="$(MainSource)">
