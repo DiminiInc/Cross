@@ -1,4 +1,4 @@
-unit Cross;
+﻿unit Cross;
 
 interface
 
@@ -18,6 +18,7 @@ type
     Window1: TMenuItem;
     Square1: TMenuItem;
     Custom1: TMenuItem;
+    ShowGridSize: TMenuItem;
     procedure DrawRectangle;
     procedure DrawCircle;
     procedure DrawGrid;
@@ -35,6 +36,7 @@ type
     procedure Square1Click(Sender: TObject);
     procedure About1Click(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure ShowGridSizeClick(Sender: TObject);
   private
     size, sizeAdditional, lineWidth: integer;
     appMode, editMode, resizingMode: string;
@@ -57,7 +59,7 @@ begin
   Circle1.Checked := False;
   appMode := 'Rectangle';
   editMode := 'Main';
-  DrawRectangle();
+  DrawGrid();
 end;
 
 procedure TApp.About1Click(Sender: TObject);
@@ -70,7 +72,13 @@ begin
   Circle1.Checked := True;
   Rectangle1.Checked := False;
   appMode := 'Circle';
-  DrawCircle();
+  DrawGrid();
+end;
+
+procedure TApp.ShowGridSizeClick(Sender: TObject);
+begin
+  ShowGridSize.Checked := not ShowGridSize.Checked;
+  DrawGrid();
 end;
 
 procedure TApp.Square1Click(Sender: TObject);
@@ -187,6 +195,15 @@ begin
     DrawRectangle()
   else
     DrawCircle();
+  App.Canvas.Font.Size:= 12;
+  App.Canvas.Font.Color:= clRed;
+  App.Canvas.Font.Quality:=fqnonAntiAliased;
+  if ShowGridSize.Checked  then
+  begin
+    App.Canvas.TextOut(10,10, '⌀'+size.ToString);
+    if appMode = 'Circle' then
+      App.Canvas.TextOut(10,30, '⌀'+sizeAdditional.ToString);
+  end;
 end;
 
 procedure TApp.FormCreate(Sender: TObject);

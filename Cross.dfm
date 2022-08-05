@@ -38,6 +38,10 @@ object App: TApp
         RadioItem = True
         OnClick = Circle1Click
       end
+      object ShowGridSize: TMenuItem
+        Caption = 'Show Grid Size'
+        OnClick = ShowGridSizeClick
+      end
     end
     object Window1: TMenuItem
       Caption = 'Window'
