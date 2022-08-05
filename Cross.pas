@@ -21,6 +21,7 @@ type
     procedure DrawRectangle;
     procedure DrawCircle;
     procedure DrawGrid;
+    procedure ResizeGrid(mode: integer; Shift: TShiftState);
     procedure FormPaint(Sender: TObject);
     procedure FormResize(Sender: TObject);
     procedure FormMouseWheelDown(Sender: TObject; Shift: TShiftState;
@@ -147,6 +148,39 @@ begin
   App.Canvas.Pen.Width := 1;
 end;
 
+procedure TApp.ResizeGrid(mode: integer; Shift: TShiftState);
+var
+  tempSize: integer;
+begin
+  App.DoubleBuffered := True;
+
+  if editMode = 'Main' then
+    tempSize := size
+  else
+    tempSize := sizeAdditional;
+
+  if ssShift in Shift then
+    tempSize := tempSize + 100 * mode
+  else if ssCtrl in Shift then
+    tempSize := tempSize + 10 * mode
+  else
+    tempSize := tempSize + mode;
+
+  if editMode = 'Main' then
+    size := tempSize
+  else
+    sizeAdditional := tempSize;
+
+  if size < 0 then
+    size := 0;
+  if sizeAdditional < 0 then
+    sizeAdditional := 0;
+  if sizeAdditional > size then
+    sizeAdditional := size;
+
+  DrawGrid();
+end;
+
 procedure TApp.DrawGrid();
 begin
   if appMode = 'Rectangle' then
@@ -169,16 +203,21 @@ var
   speedModifier: integer;
 begin
   App.DoubleBuffered := True;
-  if Key = 187 then
+  if Key = 190 then
   begin
     lineWidth := lineWidth + 1;
   end;
-  if Key = 189 then
+  if Key = 188 then
   begin
     lineWidth := lineWidth - 1;
     if lineWidth < 1 then
       lineWidth := 1
   end;
+
+  if Key = 187 then
+    ResizeGrid(1, Shift);
+  if Key = 189 then
+    ResizeGrid(-1, Shift);
 
   if ssShift in Shift then
     speedModifier := 100
@@ -218,65 +257,14 @@ end;
 
 procedure TApp.FormMouseWheelDown(Sender: TObject; Shift: TShiftState;
   MousePos: TPoint; var Handled: Boolean);
-var
-  tempSize: integer;
 begin
-  App.DoubleBuffered := True;
-
-  if editMode = 'Main' then
-    tempSize := size
-  else
-    tempSize := sizeAdditional;
-
-  if ssShift in Shift then
-    tempSize := tempSize - 100
-  else if ssCtrl in Shift then
-    tempSize := tempSize - 10
-  else
-    tempSize := tempSize - 1;
-
-  if editMode = 'Main' then
-    size := tempSize
-  else
-    sizeAdditional := tempSize;
-
-  if size < 0 then
-    size := 0;
-  if sizeAdditional < 0 then
-    sizeAdditional := 0;
-  DrawGrid();
+  ResizeGrid(-1, Shift);
 end;
 
 procedure TApp.FormMouseWheelUp(Sender: TObject; Shift: TShiftState;
   MousePos: TPoint; var Handled: Boolean);
-var
-  tempSize: integer;
 begin
-  App.DoubleBuffered := True;
-
-  if editMode = 'Main' then
-    tempSize := size
-  else
-    tempSize := sizeAdditional;
-
-  if ssShift in Shift then
-    tempSize := tempSize + 100
-  else if ssCtrl in Shift then
-    tempSize := tempSize + 10
-  else
-    tempSize := tempSize + 1;
-
-  if editMode = 'Main' then
-    size := tempSize
-  else
-    sizeAdditional := tempSize;
-
-  if sizeAdditional > size then
-  begin
-    sizeAdditional := size
-  end;
-
-  DrawGrid();
+  ResizeGrid(1, Shift);
 end;
 
 procedure TApp.FormPaint(Sender: TObject);
