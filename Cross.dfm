@@ -15,14 +15,12 @@ object App: TApp
   Font.Style = []
   FormStyle = fsStayOnTop
   Menu = AppMenu
-  OldCreateOrder = False
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   OnMouseWheelDown = FormMouseWheelDown
   OnMouseWheelUp = FormMouseWheelUp
   OnPaint = FormPaint
   OnResize = FormResize
-  PixelsPerInch = 96
   TextHeight = 13
   object AppMenu: TMainMenu
     object Mode1: TMenuItem
