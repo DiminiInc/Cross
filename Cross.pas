@@ -20,6 +20,7 @@ type
     Custom1: TMenuItem;
     ShowGridSize: TMenuItem;
     Help1: TMenuItem;
+    FreezePosition: TMenuItem;
     procedure DrawRectangle;
     procedure DrawCircle;
     procedure DrawGrid;
@@ -35,6 +36,7 @@ type
     procedure Rectangle1Click(Sender: TObject);
     procedure Custom1Click(Sender: TObject);
     procedure Square1Click(Sender: TObject);
+    procedure FreezePositionClick(Sender: TObject);
     procedure About1Click(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure ShowGridSizeClick(Sender: TObject);
@@ -103,6 +105,16 @@ begin
   Square1.Checked := False;
   resizingMode := 'Custom';
   App.BorderIcons := [biSystemMenu, biMinimize, biMaximize];
+end;
+
+
+procedure TApp.FreezePositionClick(Sender: TObject);
+begin
+  FreezePosition.Checked := not FreezePosition.Checked;
+  if (FreezePosition.Checked) then
+   App.Align:=alCustom
+  else
+   App.Align:=alNone;
 end;
 
 procedure TApp.DrawRectangle();

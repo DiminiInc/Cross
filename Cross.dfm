@@ -54,6 +54,10 @@ object App: TApp
         RadioItem = True
         OnClick = Custom1Click
       end
+      object FreezePosition: TMenuItem
+        Caption = 'Freeze Position'
+        OnClick = FreezePositionClick
+      end
     end
     object Help: TMenuItem
       Caption = 'Help'
