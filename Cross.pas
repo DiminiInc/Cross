@@ -19,6 +19,7 @@ type
     Square1: TMenuItem;
     Custom1: TMenuItem;
     ShowGridSize: TMenuItem;
+    Help1: TMenuItem;
     procedure DrawRectangle;
     procedure DrawCircle;
     procedure DrawGrid;
@@ -37,6 +38,7 @@ type
     procedure About1Click(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure ShowGridSizeClick(Sender: TObject);
+    procedure Help1Click(Sender: TObject);
   private
     size, sizeAdditional, lineWidth: integer;
     appMode, editMode, resizingMode: string;
@@ -51,7 +53,7 @@ implementation
 
 {$R *.dfm}
 
-uses About;
+uses About, Help;
 
 procedure TApp.Rectangle1Click(Sender: TObject);
 begin
@@ -88,6 +90,11 @@ begin
   resizingMode := 'Square';
   App.BorderIcons := [biSystemMenu, biMinimize];
   App.ClientWidth := App.ClientHeight;
+end;
+
+procedure TApp.Help1Click(Sender: TObject);
+begin
+  HelpForm.Show();
 end;
 
 procedure TApp.Custom1Click(Sender: TObject);

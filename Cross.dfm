@@ -57,6 +57,10 @@ object App: TApp
     end
     object Help: TMenuItem
       Caption = 'Help'
+      object Help1: TMenuItem
+        Caption = 'Help'
+        OnClick = Help1Click
+      end
       object About1: TMenuItem
         Caption = 'About'
         OnClick = About1Click
